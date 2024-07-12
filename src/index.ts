@@ -4,12 +4,12 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import http from 'http';
 import dotenv from 'dotenv';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 
 dotenv.config();
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
 
 const app = express();
 const server = http.createServer(app);
