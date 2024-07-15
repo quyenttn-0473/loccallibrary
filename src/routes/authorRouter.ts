@@ -5,7 +5,6 @@ const router = Router();
 
 router.get('/', AuthorController.list);
 router.get('/:id', AuthorController.detail); // Thêm route cho chi tiết
-router.get('/addAuthor', AuthorController.addAuthorForm);
 router.post('/', AuthorController.create);
 router.put('/update/:id', AuthorController.update);
 router.delete('/delete/:id', AuthorController.delete);

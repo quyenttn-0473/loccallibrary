@@ -1,32 +1,51 @@
 import { Request, Response } from 'express';
-import { AppDataSource } from '../data-source';
-import { Book } from '../entity/Book';
 
 export class BookController {
-    static bookRepository = AppDataSource.getRepository(Book);
     static list = async (req: Request, res: Response) => {
         try {
-            const books = await this.bookRepository.find();
-            res.render('book/book', { books });
-        } catch (error) {
+            res.send(`NOT IMPLEMENTED: Book List`);
+        } catch (error: any) {
             console.error('Error fetching books:', error);
-            res.status(500).send('Internal Server Error');
+            res.redirect('/book');
         }
     };
+
     static detail = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            const book = await this.bookRepository.findOneBy({ id: parseInt(id) });
+            res.send(`NOT IMPLEMENTED: Book Detail By ${id}`);
+        } catch (error: any) {
+            console.error('Error fetching book:', error);
+            res.redirect('/book');
+        }
+    };
 
-            if (!book) {
-                res.status(404).send('book not found');
-                return;
-            }
+    static create = async (req: Request, res: Response) => {
+        try {
+            res.send(`NOT IMPLEMENTED: Create Book`);
+        } catch (error: any) {
+            console.error('Error creating book:', error);
+            res.redirect('/book');
+        }
+    };
 
-            res.render('bookDetail', { book });
-        } catch (error) {
-            console.error('Error fetching authors:', error);
-            res.status(500).send('Internal Server Error');
+    static update = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params;
+            res.send(`NOT IMPLEMENTED: Update Book By ${id}`);
+        } catch (error: any) {
+            console.error('Error updating book:', error);
+            res.redirect('/book');
+        }
+    };
+
+    static delete = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params;
+            res.send(`NOT IMPLEMENTED: Delete Book By ${id}`);
+        } catch (error: any) {
+            console.error('Error deleting book:', error);
+            res.redirect('/book');
         }
     };
 }
