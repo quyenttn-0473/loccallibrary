@@ -1,0 +1,119 @@
+extends ../layout
+
+block content
+    #notification.hidden
+    .container
+      a.btn.btn-primary(href="/") Back to home
+      h1 Book Management
+      hr
+      if messages && messages.success
+        .alert.alert-success= messages.success
+      if messages && messages.error
+        .alert.alert-danger= messages.error
+      // List of books
+      h2 List of books
+      table.table.table-striped
+        thead
+          tr
+            th ID
+            th Title
+            th Summary 
+            th Isbn
+            th Url
+            th Name
+            th Actions
+        tbody
+          each book in books
+            tr
+              td= book.id
+              td= book.title
+              td= book.summary 
+              td= book.isbn
+              td= book.url
+              td= book.name
+              td
+                a.btn.btn-info.btn-sm(href=`/author/${book.id}`) Details
+                //- Edit button
+                button.btn.btn-warning.btn-sm(type="button" data-toggle="modal" data-target="#editAuthorModal" data-id=book.id data-title=book.title data-summary=book.summary data-isbn=book.isbn data-url=book.url data-name=book.name) Edit
+
+                //- Delete form
+                form(action=`/author/delete/${book.id}` method="POST" style="display:inline;")
+                  input(type="hidden" name="_method" value="DELETE")
+                  button.btn.btn-danger.btn-sm(type="submit") Delete
+
+
+      h2 Book Create 
+        //- Form to add a new author
+      form#addAuthorForm(action="/author" method="POST")
+        .form-group
+          label(for="title") Title
+          input#title.form-control(type="text" name="title" required)
+        .form-group
+          label(for="summary") Summary
+          input#summary.form-control(type="text" name="summary" required)
+        .form-group
+          label(for="isbn") ISBN
+          input#isbn.form-control(type="text" name="isbn" )
+        .form-group
+          label(for="url") URL
+          input#url.form-control(type="text" name="url")
+        .form-group
+          label(for="name") Name
+          input#url.form-control(type="text" name="name")
+        .form-group
+        button.btn.btn-primary(type="submit") Add Author
+
+      //- Edit Author Modal
+      .modal#editAuthorModal(tabindex="-1" role="dialog")
+        .modal-dialog(role="document")
+          .modal-content
+            .modal-header
+              h5.modal-title Edit Author
+              button.close(type="button" data-dismiss="modal" aria-label="Close")
+                span(aria-hidden="true") &times;
+            .modal-body
+              form#editAuthorForm(action="/author/update/:id" method="POST")
+                input(type="hidden" name="_method" value="PUT")
+                .form-group
+                  label(for="editFirstName") Title
+                  input#editFirstName.form-control(type="text" name="title" required)
+                .form-group
+                  label(for="editFamilyName") Summary 
+                  input#editFamilyName.form-control(type="text" name="summary" required)
+                .form-group
+                  label(for="editBirthDay") Isbn
+                  input#editBirthDay.form-control(type="date" name="isbn" )
+                .form-group
+                  label(for="editDeathDay") URL
+                  input#editDeathDay.form-control(type="date" name="url")
+                .form-group
+                  label(for="editName") Name
+                  input#editName.form-control(type="text" name="name" )
+                button.btn.btn-primary(type="submit") Save changes
+
+    script.
+      $('#editAuthorModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+        var title = button.data('title')
+        var summary = button.data('summary')
+        var isbn = button.data('isbn')
+        var url = button.data('url')
+        var name = button.data('name')
+        var modal = $(this)
+        modal.find('.modal-body input#editFirstName').val(title)
+        modal.find('.modal-body input#editFamilyName').val(summary)
+        modal.find('.modal-body input#editBirthDay').val(isbn)
+        modal.find('.modal-body input#editDeathDay').val(url)
+        modal.find('.modal-body input#editName').val(name)
+        modal.find('#editAuthorForm').attr('action', '/author/' + id)
+      })
+
+    script. 
+      //- Hiển thị thông báo
+      if message
+        setTimeout(function() {
+          document.getElementById('notification').classList.add('hidden');
+        }, 2000);
+      #notification(class=(message.type === 'success' ? 'success' : 'error'))
+        = message.text
