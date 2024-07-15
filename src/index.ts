@@ -5,13 +5,14 @@ import logger from 'morgan';
 import http from 'http';
 import dotenv from 'dotenv';
 import { Request, Response, NextFunction, Router } from 'express';
-
 dotenv.config();
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import authorRouter from './routes/authorRouter';
 import bookRouter from './routes/bookRouter';
+import genreRouter from './routes/genreRouter';
+import bookInstanceRouter from './routes/bookInstanceRouter';
 import methodOverride from 'method-override';
 import { AppDataSource } from './data-source';
 const app = express();
@@ -26,7 +27,6 @@ AppDataSource.initialize().then(async () => {
     app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
-    // Sử dụng method-override để xử lý yêu cầu PUT và DELETE
     app.use(methodOverride('_method'));
 
     // Chuyen trang
@@ -34,12 +34,23 @@ AppDataSource.initialize().then(async () => {
     app.use('/users', usersRouter);
     app.use('/author', authorRouter);
     app.use('/book', bookRouter);
+    app.use('/genre', genreRouter);
+    app.use('/book-instance', bookInstanceRouter);
 
+    // Sử dụng errorHandler ở cuối cùng
     app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         // set locals, only providing error in development
         res.locals.message = err.message;
         res.locals.error = req.app.get('env') === 'development' ? err : {};
+        app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+            // set locals, only providing error in development
+            res.locals.message = err.message;
+            res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+            // render the error page
+            res.status(500); // err.status
+            res.render('error');
+        });
         // render the error page
         res.status(500); // err.status
         res.render('error');

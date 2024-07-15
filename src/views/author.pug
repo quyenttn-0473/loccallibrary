@@ -6,17 +6,14 @@ html
     script(src="https://code.jquery.com/jquery-3.5.1.min.js")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
   body
-    #notification.hidden
+    //- Hiển thị thông báo trong 3 giây
+    #notification
     .container
       a.btn.btn-primary(href="/") Back to home
       h1 Author Management
-      hr
-      if messages && messages.success
-        .alert.alert-success= messages.success
-      if messages && messages.error
-        .alert.alert-danger= messages.error
-      // List of authors
+      //- List of authors
       h2 List of Authors
       table.table.table-striped
         thead
@@ -45,7 +42,7 @@ html
                 button.btn.btn-warning.btn-sm(type="button" data-toggle="modal" data-target="#editAuthorModal" data-id=author.id data-first_name=author.first_name data-family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) Edit
 
                 //- Delete form
-                form(action=`/author/delete/${author.id}?_method=DELETE` method="POST" style="display:inline;")
+                form(action=`/author/delete/${author.id}?_method=DELETE` method="POST"  style="display:inline;")
                   input(type="hidden" name="_method" value="DELETE")
                   button.btn.btn-danger.btn-sm(type="submit") Delete
 
@@ -126,11 +123,3 @@ html
         modal.find('#editAuthorForm').attr('action', action);
       })
 
-    script. 
-      //- Hiển thị thông báo
-      if message
-        setTimeout(function() {
-          document.getElementById('notification').classList.add('hidden');
-        }, 2000);
-      #notification(class=(message.type === 'success' ? 'success' : 'error'))
-        = message.text
