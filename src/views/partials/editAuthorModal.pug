@@ -1,0 +1,29 @@
+.modal#editAuthorModal(tabindex="-1" role="dialog")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        h5.modal-title #{t('author-page.title-edit')}
+        button.close(type="button" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body
+        form#editAuthorForm(method="POST")
+          input(type="hidden" name="_method" value="PUT")
+          .form-group
+            label(for="editFirstName") #{t('author-page.name-col.first-name')}
+            input#editFirstName.form-control(type="text" name="first_name" required)
+          .form-group
+            label(for="editFamilyName") #{t('author-page.name-col.family-name')}
+            input#editFamilyName.form-control(type="text" name="family_name" required)
+          .form-group
+            label(for="editBirthDay") #{t('author-page.name-col.birth-day')}
+            input#editBirthDay.form-control(type="date" name="date_of_birth")
+          .form-group
+            label(for="editDeathDay") #{t('author-page.name-col.death-day')}
+            input#editDeathDay.form-control(type="date" name="date_of_death")
+          .form-group
+            label(for="editName") #{t('author-page.name-col.name')}
+            input#editName.form-control(type="text" name="name")
+          .form-group
+            label(for="editAvatar") #{t('author-page.name-col.url')}
+            input#editAvatar.form-control(type="text" name="url")
+          button.btn.btn-primary(type="submit") #{t('author-page.btn_save')}

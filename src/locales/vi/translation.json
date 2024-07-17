@@ -1,0 +1,92 @@
+{
+    "welcome": "Chào mừng bạn đến với ứng dụng!",
+    "changeLanguage": "Thay đổi ngôn ngữ",
+    "home": {
+        "welcome": "Chào mừng bạn đến với {{title}}",
+        "content": "Nội dung",
+        "record_infor": "Tình trạng thư viện của chúng tôi:",
+        "book": "Sách:",
+        "bookinstance": "Bản sao:",
+        "available_bookinstance": "Tất cả các bản sao có sẵn:",
+        "author": "Tác giả:",
+        "genre": "Thể loại:"
+    },
+    "sidebar": {
+        "home": "Thư viện địa phương",
+        "book": "Sách",
+        "author": "Tác giả",
+        "genre": "Thể loại",
+        "bookinstance": "Bản sao sách",
+        "create_author": "Tạo mới tác giả",
+        "create_genre": "Tạo mới thể loại",
+        "create_book": "Tạo mới sách",
+        "create_bookinstance": "Tạo mới bản sao sách",
+        "english": "Tiếng Anh",
+        "vietnamese": "Tiếng Việt"
+    },
+    "author-page": {
+        "btn_back": "Trang chủ",
+        "title-page": "Quản lí Tác giả",
+        "title-list": "Danh sách tác giả",
+        "name-col": {
+            "id": "STT",
+            "first-name": "Tên ",
+            "family-name": "Họ",
+            "birth-day": "Ngày sinh",
+            "death-day": "Ngày mất",
+            "name": "Họ và Tên",
+            "url": "Ảnh đại diện",
+            "action": "Hành động"
+        },
+        "title-create": "Thêm mới tác giả",
+        "label-form": {
+            "first-name": "Tên",
+            "family-name": "Họ",
+            "birth-day": "Ngày sinh",
+            "death-day": "Ngày mất",
+            "name": "Họ và Tên",
+            "url": "Ảnh đại diện"
+        },
+        "btn_edit": "Sửa",
+        "btn_delete": "Xóa",
+        "btn_add": "Thêm tác giả",
+        "btn_info": "Thông tin tác giả",
+        "title-edit": "Chỉnh sửa thông tin",
+        "title-info": "Thông tin tác giả",
+        "btn_save": "Lưu"
+    },
+    "mess_author": {
+        "create": {
+            "success": "Tác giả đã được tạo thành công.",
+            "error": "Đã xảy ra lỗi khi tạo tác giả."
+        },
+        "update": {
+            "success": "Tác giả đã được cập nhật thành công.",
+            "error": "Đã xảy ra lỗi khi cập nhật tác giả."
+        },
+        "delete": {
+            "success": "Tác giả đã được xóa thành công.",
+            "error": "Đã xảy ra lỗi khi xóa tác giả."
+        }
+    },
+    "mess_book": {
+        "create": {
+            "success": "Sách đã được tạo thành công.",
+            "error": "Đã xảy ra lỗi khi tạo sách."
+        },
+        "update": {
+            "success": "Sách đã được cập nhật thành công.",
+            "error": "Đã xảy ra lỗi khi cập nhật sách."
+        },
+        "delete": {
+            "success": "Sách đã được xóa thành công.",
+            "error": "Đã xảy ra lỗi khi xóa sách."
+        }
+    },
+    "mess": {
+        "counts": {
+            "success": "Tải số lượng sách và tác giả thành công.",
+            "error": "Không thể tải được số lượng sách và tác giả"
+        }
+    }
+}

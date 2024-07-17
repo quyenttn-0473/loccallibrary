@@ -4,8 +4,7 @@ export class BookController {
     static list = async (req: Request, res: Response) => {
         try {
             res.send(`NOT IMPLEMENTED: Book List`);
-        } catch (error: any) {
-            console.error('Error fetching books:', error);
+        } catch (error) {
             res.redirect('/book');
         }
     };
@@ -14,8 +13,7 @@ export class BookController {
         try {
             const { id } = req.params;
             res.send(`NOT IMPLEMENTED: Book Detail By ${id}`);
-        } catch (error: any) {
-            console.error('Error fetching book:', error);
+        } catch (error) {
             res.redirect('/book');
         }
     };
@@ -23,8 +21,7 @@ export class BookController {
     static create = async (req: Request, res: Response) => {
         try {
             res.send(`NOT IMPLEMENTED: Create Book`);
-        } catch (error: any) {
-            console.error('Error creating book:', error);
+        } catch (error) {
             res.redirect('/book');
         }
     };
@@ -33,8 +30,7 @@ export class BookController {
         try {
             const { id } = req.params;
             res.send(`NOT IMPLEMENTED: Update Book By ${id}`);
-        } catch (error: any) {
-            console.error('Error updating book:', error);
+        } catch (error) {
             res.redirect('/book');
         }
     };
@@ -43,8 +39,7 @@ export class BookController {
         try {
             const { id } = req.params;
             res.send(`NOT IMPLEMENTED: Delete Book By ${id}`);
-        } catch (error: any) {
-            console.error('Error deleting book:', error);
+        } catch (error) {
             res.redirect('/book');
         }
     };

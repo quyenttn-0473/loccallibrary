@@ -1,9 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a.btn.btn-outline-primary.mr-3(href="/author") Auhor 
-  a.btn.btn-outline-success.mr-3(href="/book") Book
-  a.btn.btn-outline-secondary.mr-3(href="/genre") Gener
-  a.btn.btn-outline-info.mr-3(href="/book-instance") Book Instance
+  h1 #{t('home.content')}
+  h4 #{t('home.record_infor')}
+  hr
+  a.btn.btn-primary.mr-3(href="/author") #{t('sidebar.author')}
+  a.btn.btn-success.mr-3(href="/book") #{t('sidebar.book')}
+  a.btn.btn-secondary.mr-3(href="/genre") #{t('sidebar.genre')}
+  a.btn.btn-info.mr-3(href="/book-instance") #{t('sidebar.bookinstance')}
+  hr
+  .row 
+    ul.col-5 
+      li
+        a.btn.btn-outline-primary(href='/author/create') #{t('sidebar.create_author')}
+      li
+        a.btn.btn-outline-primary(href='/genre/create') #{t('sidebar.create_genre')}
+      li
+        a.btn.btn-outline-primary(href='/book/create') #{t('sidebar.create_book')}
+      li
+        a.btn.btn-outline-primary(href='/book-instance/create') #{t('sidebar.create_bookinstance')}
+    ul.col-5
+      li #[strong #{t('home.book')}] #{book_count}
+      li #[strong #{t('home.bookinstance')}] #{book_instance_count}
+      li #[strong #{t('home.author')}] #{author_count}
+      li #[strong #{t('home.genre')}] #{genre_count}

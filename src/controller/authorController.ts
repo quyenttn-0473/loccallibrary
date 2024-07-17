@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
 import { Author } from '../entity/Author';
+import { sendFlashMessage } from '../flashMessageHelper';
 
 export class AuthorController {
     static authorRepository = AppDataSource.getRepository(Author);
@@ -8,8 +9,7 @@ export class AuthorController {
         try {
             const authors = await this.authorRepository.find();
             res.render('author', { authors });
-        } catch (error: any) {
-            console.error('Error fetching authors:', error);
+        } catch (error) {
             res.redirect('/author');
         }
     };
@@ -18,8 +18,7 @@ export class AuthorController {
         try {
             const { id } = req.params;
             res.send(`Author Detail: ${id}`);
-        } catch (error: any) {
-            console.error('Error fetching author:', error);
+        } catch (error) {
             res.redirect('/author');
         }
     };
@@ -31,8 +30,8 @@ export class AuthorController {
     static create = async (req: Request, res: Response) => {
         try {
             res.send(`NOT IMPLEMENTED: Create Author`);
-        } catch (error: any) {
-            console.error('Error creating author:', error);
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.create.error');
             res.redirect('/author');
         }
     };
@@ -41,8 +40,8 @@ export class AuthorController {
         try {
             const { id } = req.params;
             res.send(`NOT IMPLEMENTED: Update Author By ${id}`);
-        } catch (error: any) {
-            console.error('Error updating author:', error);
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.update.error');
             res.redirect('/author');
         }
     };
@@ -51,8 +50,8 @@ export class AuthorController {
         try {
             const { id } = req.params;
             res.send(`NOT IMPLEMENTED: Delete Author By ${id}`);
-        } catch (error: any) {
-            console.error('Error deleting author:', error);
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.delete.error');
             res.redirect('/author');
         }
     };

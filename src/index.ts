@@ -5,14 +5,13 @@ import logger from 'morgan';
 import http from 'http';
 import dotenv from 'dotenv';
 import { Request, Response, NextFunction, Router } from 'express';
+import i18nextMiddleware from 'i18next-http-middleware';
+import i18next from './i18n';
+import session from 'express-session';
+import flash from 'connect-flash';
 dotenv.config();
 
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
-import authorRouter from './routes/authorRouter';
-import bookRouter from './routes/bookRouter';
-import genreRouter from './routes/genreRouter';
-import bookInstanceRouter from './routes/bookInstanceRouter';
 import methodOverride from 'method-override';
 import { AppDataSource } from './data-source';
 const app = express();
@@ -20,6 +19,8 @@ const server = http.createServer(app);
 
 AppDataSource.initialize().then(async () => {
     console.log('Data source was initialize');
+    // Initialize i18next middleware
+    app.use(i18nextMiddleware.handle(i18next));
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'pug');
     app.use(logger('dev'));
@@ -28,14 +29,23 @@ AppDataSource.initialize().then(async () => {
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(methodOverride('_method'));
-
+    // Cấu hình session middleware
+    app.use(
+        session({
+            secret: process.env.SECRETKEY || '',
+            resave: false,
+            saveUninitialized: true,
+        })
+    );
+    app.use(flash());
+    // Middleware để chuyển flash messages vào views
+    app.use((req, res, next) => {
+        res.locals.successMessages = req.flash('success');
+        res.locals.errorMessages = req.flash('error');
+        next();
+    });
     // Chuyen trang
     app.use('/', indexRouter);
-    app.use('/users', usersRouter);
-    app.use('/author', authorRouter);
-    app.use('/book', bookRouter);
-    app.use('/genre', genreRouter);
-    app.use('/book-instance', bookInstanceRouter);
 
     // Sử dụng errorHandler ở cuối cùng
     app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
