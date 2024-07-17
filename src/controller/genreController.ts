@@ -1,8 +1,14 @@
 import { Request, Response } from 'express';
+import genreService from '../service/genre.service';
 
 export class GenreController {
     static list = async (req: Request, res: Response) => {
-        res.send(`NOT IMPLEMENTED: Genre List`);
+        try {
+            const genres = await genreService.list();
+            res.render('genre/index', { genres });
+        } catch (error) {
+            res.redirect('/genre');
+        }
     };
 
     static detail = async (req: Request, res: Response) => {

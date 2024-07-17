@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
+import bookService from '../service/book.service';
+import authorService from '../service/author.service';
 
 export class BookController {
     static list = async (req: Request, res: Response) => {
         try {
-            res.send(`NOT IMPLEMENTED: Book List`);
+            const books = await bookService.getListBook();
+            const authors = await authorService.list();
+            res.render('book/index', { books, authors });
         } catch (error) {
             res.redirect('/book');
         }

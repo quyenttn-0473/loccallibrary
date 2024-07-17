@@ -24,6 +24,14 @@
         "english": "Tiếng Anh",
         "vietnamese": "Tiếng Việt"
     },
+    "title-page": {
+        "book_instance": "Quản lý phiên bản sách",
+        "genre": "Quản lý thể loại"
+    },
+    "title-list": {
+        "book_instance": "Danh sách phiên bản sách",
+        "genre": "Danh sách thể loại"
+    },
     "author-page": {
         "btn_back": "Trang chủ",
         "title-page": "Quản lí Tác giả",
@@ -88,5 +96,34 @@
             "success": "Tải số lượng sách và tác giả thành công.",
             "error": "Không thể tải được số lượng sách và tác giả"
         }
+    },
+    "book-page": {
+        "btn_back": "Quay lại trang chủ",
+        "title-page": "Quản lý Sách",
+        "title-list": "Danh sách Sách",
+        "name-col": {
+            "id": "ID",
+            "title": "Tiêu đề",
+            "summary": "Tóm tắt",
+            "isbn": "ISBN",
+            "name_author": "Tên Tác giả",
+            "url": "Ảnh đại diện",
+            "action": "Hành động"
+        },
+        "title-create": "Thêm Sách",
+        "label-form": {
+            "title": "Tiêu đề",
+            "summary": "Tóm tắt",
+            "isbn": "ISBN",
+            "name_author": "Tên Tác giả",
+            "url": "Ảnh đại diện"
+        },
+        "btn_edit": "Chỉnh sửa",
+        "btn_delete": "Xóa",
+        "btn_add": "Thêm Sách",
+        "btn_info": "Thông tin",
+        "title-edit": "Chỉnh sửa Sách",
+        "title-info": "Thông tin Sách",
+        "btn_save": "Lưu thay đổi"
     }
 }

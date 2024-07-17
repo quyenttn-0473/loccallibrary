@@ -1,0 +1,63 @@
+extends ../layout
+
+block content
+    .container
+      a.btn.btn-primary(href="/") #{t('book-page.btn_back')}
+      h1 #{t('book-page.title-page')}
+      hr
+      include ../partials/notifications
+      h2 #{t('book-page.title-list')}
+      table.table.table-striped
+        thead
+          tr
+            th #{t('book-page.name-col.id')}
+            th #{t('book-page.name-col.title')} 
+            th #{t('book-page.name-col.summary')}
+            th #{t('book-page.name-col.isbn')}
+            th #{t('book-page.name-col.name_author')}
+            th #{t('book-page.name-col.url')}
+            th #{t('book-page.name-col.action')}
+        tbody
+          each book in books
+            tr
+              td= book.id
+              td= book.title
+              td#col-summary= book.summary
+              td= book.isbn
+              td#col-url= book.url
+              td#col-name_author= book.name_author
+              td
+                //- Detail button
+                button.btn.btn-info.btn-sm.mt-2(type="button" data-toggle="modal" data-target="#detailBookModal" data-id=book.id data-title=book.title data-summary=book.summary data-isbn=book.isbn data-url=book.url data-name_author=book.name_author) #{t('book-page.btn_info')}
+                //- Edit button
+                button.btn.btn-warning.btn-sm.mt-2(type="button" data-toggle="modal" data-target="#editBookModal" data-id=book.id data-title=book.title data-summary=book.summary data-isbn=book.isbn data-url=book.url data-name_author=book.name_author data-author_id=book.author_id) #{t('book-page.btn_edit')}
+                //- Delete form
+                form(action=`/book/delete/${book.id}?_method=DELETE` method="POST" style="display:inline;")
+                  input(type="hidden" name="_method" value="DELETE")
+                  button.btn.btn-danger.btn-sm.mt-2(type="submit") #{t('book-page.btn_delete')}
+      h2 #{t('book-page.title-create')}
+        //- Form to add a new book
+      form#addBookForm(action="/book" method="POST")
+        .form-group
+          label(for="title") #{t('book-page.name-col.title')} 
+          input#title.form-control(type="text" name="title" required)
+        .form-group
+          label(for="summary") #{t('book-page.name-col.summary')}
+          textarea#summary.form-control(name="summary" rows="4" required)
+        .form-group
+          label(for="isbn") #{t('book-page.name-col.isbn')}
+          input#isbn.form-control(type="text" name="isbn" )
+        .form-group
+          label(for="url") #{t('book-page.name-col.url')}
+          input#url.form-control(type="text" name="url")
+        .form-group
+          label(for="editName") #{t('book-page.name-col.name_author')}
+          select#editName.form-control(name="author")
+            each author in authors
+              option(value=author.id)= author.name
+        .form-group
+        button.btn.btn-primary(type="submit") #{t('book-page.btn_add')}
+
+    include ../partials/BookModal
+    block scripts
+    script(src="/js/modals.js")

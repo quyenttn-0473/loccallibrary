@@ -24,6 +24,14 @@
         "english": "English",
         "vietnamese": "Vietnamese"
     },
+    "title-page": {
+        "book_instance": "Book Instance Management",
+        "genre": "Genre Management"
+    },
+    "title-list": {
+        "book_instance": "List of Book Instance",
+        "genre": "List of Genre"
+    },
     "author-page": {
         "btn_back": "Back to home",
         "title-page": "Author Management",
@@ -73,6 +81,9 @@
         "counts": {
             "success": "Author and Book counts loaded successfully.",
             "error": "Failed to load Author and Book counts."
+        },
+        "select": {
+            "error": "Empty data!! "
         }
     },
     "mess_book": {
@@ -88,5 +99,34 @@
             "success": "Book has been successfully deleted.",
             "error": "An error occurred while deleting the book."
         }
+    },
+    "book-page": {
+        "btn_back": "Back to home",
+        "title-page": "Book Management",
+        "title-list": "List of Books",
+        "name-col": {
+            "id": "ID",
+            "title": "Title",
+            "summary": "Summary",
+            "isbn": "ISBN",
+            "name_author": "Name Author",
+            "url": "Avatar",
+            "action": "Action"
+        },
+        "title-create": "Book Create",
+        "label-form": {
+            "title": "Title",
+            "summary": "Summary",
+            "isbn": "ISBN",
+            "name_author": "Name Author",
+            "url": "Avatar"
+        },
+        "btn_edit": "Edit",
+        "btn_delete": "Delete",
+        "btn_add": "Add Book",
+        "btn_info": "Info",
+        "title-edit": "Edit Book",
+        "title-info": "Info Book",
+        "btn_save": "Save Changes"
     }
 }

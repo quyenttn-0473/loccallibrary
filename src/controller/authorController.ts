@@ -1,14 +1,12 @@
 import { Request, Response } from 'express';
-import { AppDataSource } from '../data-source';
-import { Author } from '../entity/Author';
 import { sendFlashMessage } from '../flashMessageHelper';
+import authorService from '../service/author.service';
 
 export class AuthorController {
-    static authorRepository = AppDataSource.getRepository(Author);
     static list = async (req: Request, res: Response) => {
         try {
-            const authors = await this.authorRepository.find();
-            res.render('author', { authors });
+            const authors = await authorService.list();
+            res.render('author/index', { authors });
         } catch (error) {
             res.redirect('/author');
         }

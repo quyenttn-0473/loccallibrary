@@ -7,5 +7,10 @@ class AuthorService {
     async countAuthor() {
         return await this.authorRepository.count();
     }
+
+    async list() {
+        return await this.authorRepository.find();
+    }
 }
+
 export default new AuthorService();

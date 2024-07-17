@@ -4,7 +4,7 @@ import { Router, NextFunction, Request, Response } from 'express';
 const router = Router();
 
 router.get('/', AuthorController.list);
-router.get('/:id', AuthorController.detail); // Thêm route cho chi tiết
+router.get('/:id', AuthorController.detail);
 router.post('/', AuthorController.create);
 router.put('/update/:id', AuthorController.update);
 router.delete('/delete/:id', AuthorController.delete);

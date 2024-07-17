@@ -1,8 +1,17 @@
 import { Request, Response } from 'express';
+import bookInstanceService from '../service/bookInstance.service';
+import { sendFlashMessage } from '../flashMessageHelper';
+import { BookStatus } from '../enums/bookStatus';
 
 export class BookInstanceController {
     static list = async (req: Request, res: Response) => {
-        res.send(`NOT IMPLEMENTED: BookInstance List`);
+        try {
+            const bookInstances = await bookInstanceService.list();
+            res.render('book_instance/index', { bookInstances, status: BookStatus });
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.create.error');
+            res.redirect('/book_instance');
+        }
     };
 
     static detail = async (req: Request, res: Response) => {

@@ -7,5 +7,10 @@ class GenreService {
     async countGenre() {
         return await this.GenreRepository.count();
     }
+
+    async list() {
+        return await this.GenreRepository.find();
+    }
 }
+
 export default new GenreService();
