@@ -1,0 +1,54 @@
+.modal#editBookModal(tabindex="-1" role="dialog")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        h5.modal-title #{t('book-page.title-edit')}
+        button.close(type="button" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body
+        form#editBookForm(action="/book/update/:id" method="POST")
+          input(type="hidden" name="_method" value="PUT")
+          .form-group
+            label(for="editTitle") #{t('book-page.name-col.title')} 
+            input#editTitle.form-control(type="text" name="title" required)
+          .form-group
+            label(for="editSummary") #{t('book-page.name-col.summary')} 
+            textarea#editSummary.form-control(name="summary" rows="4" required)
+          .form-group
+            label(for="editIsbn") #{t('book-page.name-col.isbn')}
+            input#editIsbn.form-control(type="text" name="isbn" )
+          .form-group
+            label(for="editUrl") #{t('book-page.name-col.url')}
+            input#editUrl.form-control(type="text" name="url")
+          .form-group
+            label(for="editNameAuthor") #{t('book-page.name-col.name_author')}
+            select#editNameAuthor.form-control(name="author")
+              each author in authors
+                option(value=author.id)= author.name
+          button.btn.btn-primary(type="submit") #{t('book-page.btn_save')}
+
+.modal#detailBookModal(tabindex="-1" role="dialog")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        h5.modal-title #{t('book-page.title-info')}
+        button.close(type="button" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body
+        form#detailBookModal(action="/book/:id" method="GET")
+          input(type="hidden" name="_method" value="GET")
+          .form-group
+            label(for="Title") #{t('book-page.name-col.title')} 
+            input#Title.form-control(type="text" name="title" required readonly)
+          .form-group
+            label(for="Summary") #{t('book-page.name-col.summary')}
+            textarea#Summary.form-control(name="summary" rows="4" required readonly)
+          .form-group
+            label(for="Isbn") #{t('book-page.name-col.isbn')}
+            input#Isbn.form-control(type="text" name="isbn" readonly )
+          .form-group
+            label(for="Url") #{t('book-page.name-col.url')}
+            input#Url.form-control(type="text" name="url" readonly)
+          .form-group
+            label(for="NameAuthor") #{t('book-page.name-col.name_author')}
+            input#NameAuthor.form-control(type="text" name="name" readonly)

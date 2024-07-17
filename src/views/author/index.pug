@@ -1,13 +1,11 @@
-extends layout
+extends ../layout
 
 block content
   .container
     a.btn.btn-primary(href="/") #{t('author-page.btn_back')}
     h1 #{t('author-page.title-page')}
-    hr
-    
-    include partials/notifications
-
+    hr 
+    include ../partials/notifications
     h2 #{t('author-page.title-list')}
     table.table.table-striped
       thead
@@ -31,12 +29,10 @@ block content
             td#col-name_author= author.name
             td#col-url= author.url
             td
-              //- a.btn.btn-info.btn-sm(href=`/author/${author.id}`) Details
               //- Detail button
               button.btn.btn-info.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#detailAuthorModal" data-id=author.id data-first_name=author.first_name data_family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_info')}
               //- Edit button
               button.btn.btn-warning.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#editAuthorModal" data-id=author.id data-first_name=author.first_name data_family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_edit')}
-
               //- Delete form
               form(action=`/author/delete/${author.id}?_method=DELETE` method="POST"  style="display:inline;")
                 input(type="hidden" name="_method" value="DELETE")
@@ -65,8 +61,7 @@ block content
         input#avatar.form-control(type="text" name="url")
       button.btn.btn-primary(type="submit") #{t('author-page.btn_add')}
 
-  include partials/editAuthorModal
-  include partials/detailAuthorModal
+  include ../partials/AuthorModal
 
   block scripts
     script(src="/js/modals.js")

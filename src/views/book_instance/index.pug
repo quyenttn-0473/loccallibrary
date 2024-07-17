@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    .container 
+        a.btn.btn-primary(href="/") #{t('book-page.btn_back')}
+        h1 #{t('title-page.book_instance')}
+        hr
+        include ../partials/notifications
+        h2 #{t('title-list.book_instance')}
+        ul
+            each bookInstance in bookInstances 
+                li.disc
+                    a(href="#") #{bookInstance.book_name}: #{bookInstance.imprint} - 
+                    if bookInstance.status === status.Available
+                        span.status-available #{bookInstance.status}
+                    else if bookInstance.status === status.Loaned
+                        span.status-loaned #{bookInstance.status}
+                    else if bookInstance.status === status.Maintenance
+                        span.status-maintenance #{bookInstance.status}
+

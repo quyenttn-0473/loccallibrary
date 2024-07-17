@@ -1,3 +1,31 @@
+.modal#detailAuthorModal(tabindex="-1" role="dialog")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        h5.modal-title #{t('author-page.title-info')}
+        button.close(type="button" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body
+        form#detailAuthorForm(method="GET")
+          .form-group
+            label(for="detailFirstName") #{t('author-page.name-col.first-name')}
+            input#detailFirstName.form-control(type="text" name="first_name" required readonly)
+          .form-group
+            label(for="detailFamilyName") #{t('author-page.name-col.family-name')}
+            input#detailFamilyName.form-control(type="text" name="family_name" required readonly)
+          .form-group
+            label(for="detailBirthDay") #{t('author-page.name-col.birth-day')}
+            input#detailBirthDay.form-control(type="date" name="date_of_birth" readonly)
+          .form-group
+            label(for="detailDeathDay") #{t('author-page.name-col.death-day')}
+            input#detailDeathDay.form-control(type="date" name="date_of_death" readonly)
+          .form-group
+            label(for="detailName") #{t('author-page.name-col.name')}
+            input#detailName.form-control(type="text" name="name" readonly)
+          .form-group
+            label(for="detailAvatar") #{t('author-page.name-col.url')}
+            input#detailAvatar.form-control(type="text" name="url" readonly)
+
 .modal#editAuthorModal(tabindex="-1" role="dialog")
   .modal-dialog(role="document")
     .modal-content

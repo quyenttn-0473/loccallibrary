@@ -1,5 +1,6 @@
 body {
   padding-top: 50px;
+  padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -86,4 +87,24 @@ a {
 ul li {
   list-style-type: none;
   margin-bottom: 10px;
+}
+
+ul li.circle {
+  list-style-type: circle;
+}
+
+ul li.disc {
+  list-style-type: disc;
+}
+
+.status-available {
+  color: green;
+}
+
+.status-loaned {
+  color: rgb(207, 115, 17);
+}
+
+.status-maintenance {
+  color: red;
 }
