@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import { Router, NextFunction, Request, Response } from 'express';
+
 import { BookController } from '../controller/bookController';
 
 const router = Router();
-
 router.get('/', BookController.list);
 router.get('/:id', BookController.detail); // Thêm route cho chi tiết
 router.post('/', BookController.create);
