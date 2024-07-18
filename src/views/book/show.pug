@@ -1,0 +1,35 @@
+extends ../layout
+
+block content 
+    h1 #[strong #{t('book-page.label-form.title')}: ] #{bookInfo.title}
+    p #[strong #{t('book-page.label-form.name_author')}: ] 
+        a(href=`/author/${author.id}`) #{author.name}
+    p.oneline #[strong #{t('book-page.label-form.summary')}: ] #{bookInfo.summary}
+    p #[strong #{t('book-page.label-form.isbn')}: ] #{bookInfo.isbn}
+    p #[strong #{t('book-page.label-form.genre')}: ] 
+        each val, index in bookGenres
+            a(href=`/genre/${val.id}`) #{val.name}
+            if index < bookGenres.length - 1
+                |, 
+        else 
+            p #{t('book-page.no_genre')}
+    div(style='margin-left:20px;margin-top:20px')
+        h4 #{t('book-page.label-form.copies')}
+        each val in bookInstances
+            hr
+            if val.status === 'Available'
+                p.status-available #{val.status}
+            else if val.status=='Maintenance'
+                p.status-maintenance #{val.status}
+            else
+                p.status-loaned #{val.status}
+            p #[strong #{t('book-page.label-form.imprint')}: ]  #{val.imprint}
+            if val.status!='Available'
+                p #[strong #{t('book-page.label-form.due_back')}:] #{val.due_back}
+            p #[strong #{t('book-page.label-form.id')}: ]  
+                a(href=val.url) #{val.id}
+        else 
+            p #{t('book-page.no_copies')}
+
+    
+

@@ -11,6 +11,11 @@ class GenreService {
     async list() {
         return await this.GenreRepository.find();
     }
+    async detail(id: number) {
+        return await this.GenreRepository.findOne({
+            where: { id },
+        });
+    }
 }
 
 export default new GenreService();

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import genreService from '../service/genre.service';
+import bookService from '../service/book.service';
 
 export class GenreController {
     static list = async (req: Request, res: Response) => {
@@ -13,7 +14,13 @@ export class GenreController {
 
     static detail = async (req: Request, res: Response) => {
         const { id } = req.params;
-        res.send(`NOT IMPLEMENTED: Genre Detail By ${id}`);
+        const genre = await genreService.detail(parseInt(id));
+        const books = await bookService.getBooksByGenreId(parseInt(id));
+        console.log('book: ', books);
+        res.render('genre/show', {
+            genre,
+            books,
+        });
     };
 
     static create = async (req: Request, res: Response) => {

@@ -1,0 +1,10 @@
+extends ../layout
+include ../partials/mixins.pug
+block content
+    +PageDetail(t('author-page.author'), author.name)
+    .container
+        h5 #{t('sidebar.book')}
+        each book in books 
+            +linkList(`/book/${book.id}`, book.title, book.summary)
+        
+

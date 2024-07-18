@@ -1,6 +1,8 @@
+import { Author } from './../entity/Author';
 import { Request, Response } from 'express';
 import bookService from '../service/book.service';
 import authorService from '../service/author.service';
+import { sendFlashMessage } from '../flashMessageHelper';
 
 export class BookController {
     static list = async (req: Request, res: Response) => {
@@ -16,7 +18,21 @@ export class BookController {
     static detail = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            res.send(`NOT IMPLEMENTED: Book Detail By ${id}`);
+            if (!id) {
+                sendFlashMessage(req, 'error', 'mess.select.error');
+            }
+            const bookDetail = await bookService.getBookById(parseInt(id));
+            if(bookDetail) {
+                sendFlashMessage(req, 'error', 'mess.select.error')
+                res.redirect('/book')
+            }
+            res.render('book/show', {
+                book: bookDetail,
+                bookInstances: bookDetail?.bookInstances ,
+                bookGenres: bookDetail?.bookGenres,
+                author: bookDetail.bookAuthor,
+                bookInfo: bookDetail.bookInfo
+            });
         } catch (error) {
             res.redirect('/book');
         }

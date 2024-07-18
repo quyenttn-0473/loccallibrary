@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { sendFlashMessage } from '../flashMessageHelper';
 import authorService from '../service/author.service';
+import bookService from '../service/book.service';
 
 export class AuthorController {
     static list = async (req: Request, res: Response) => {
@@ -15,8 +16,19 @@ export class AuthorController {
     static detail = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            res.send(`Author Detail: ${id}`);
+            const author = await authorService.authorById(parseInt(id));
+            if (!author) {
+                sendFlashMessage(req, 'error', 'mess.select.error');
+                res.redirect('/author');
+            }
+            const books = await bookService.getBooksByAuthor(parseInt(id));
+
+            res.render('author/show', {
+                books,
+                author,
+            });
         } catch (error) {
+            sendFlashMessage(req, 'error', 'mess.select.error');
             res.redirect('/author');
         }
     };

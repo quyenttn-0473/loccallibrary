@@ -34,6 +34,7 @@
     },
     "author-page": {
         "btn_back": "Back to home",
+        "author": "Author",
         "title-page": "Author Management",
         "title-list": "List of Authors",
         "name-col": {
@@ -84,6 +85,9 @@
         },
         "select": {
             "error": "Empty data!! "
+        },
+        "select": {
+            "error": "Empty data!! "
         }
     },
     "mess_book": {
@@ -115,11 +119,16 @@
         },
         "title-create": "Book Create",
         "label-form": {
+            "id": "ID",
             "title": "Title",
             "summary": "Summary",
             "isbn": "ISBN",
             "name_author": "Name Author",
-            "url": "Avatar"
+            "url": "Avatar",
+            "genre": "Genres",
+            "copies": "Copies",
+            "imprint": "Imprint",
+            "due_back": "Due Back"
         },
         "btn_edit": "Edit",
         "btn_delete": "Delete",
@@ -127,6 +136,8 @@
         "btn_info": "Info",
         "title-edit": "Edit Book",
         "title-info": "Info Book",
-        "btn_save": "Save Changes"
+        "btn_save": "Save Changes",
+        "no_genre": "No genres for book",
+        "no_copies": "There are no copies of this book in the library."
     }
 }
