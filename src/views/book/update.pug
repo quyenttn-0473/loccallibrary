@@ -1,0 +1,39 @@
+extends ../layout
+include ../partials/mixins.pug
+
+block content 
+  +titlePage(t('action.update'), t('option.book'))
+
+  form#editBookForm(action=`/book/update/${bookInfo.id}?_method=PUT` method="POST")
+    input(type="hidden" name="_method" value="PUT")
+    
+    .form-group
+      label(for="editTitle") #{t('book-page.name-col.title')} 
+      input#editTitle.form-control(type="text" name="title" required value=bookInfo.title) 
+    
+    .form-group
+      label(for="editSummary") #{t('book-page.name-col.summary')} 
+      textarea#editSummary.form-control(name="summary" rows="4" required)= bookInfo.summary
+    
+    .form-group
+      label(for="editIsbn") #{t('book-page.name-col.isbn')}
+      input#editIsbn.form-control(type="text" name="isbn" value=bookInfo.isbn)
+    
+    .form-group
+      label(for="editUrl") #{t('book-page.name-col.url')}
+      input#editUrl.form-control(type="text" name="url" value=bookInfo.url)
+    
+    .form-group
+      label(for="editNameAuthor") #{t('book-page.name-col.name_author')}
+      select#editNameAuthor.form-control(name="author_id")
+        each author in authors
+          option(value=author.id, selected=author.id === bookAuthor.id )= author.name
+    .form-group
+      label(for="editGenre") #{t('option.genre')}
+      //- input.form-check-input(type="checkbox" name="genres"  value=""  hidden checked=true)
+      each genre in genres
+        .form-check
+          input.form-check-input(type="checkbox" name="genres" id=`genre${genre.id}` value=genre.id, checked=bookGenresIds.includes(genre.id))
+          label.form-check-label(for=`genre${genre.id}`) #{genre.name}
+    
+    button.btn.btn-primary(type="submit") #{t('book-page.btn_save')}

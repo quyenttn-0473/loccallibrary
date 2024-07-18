@@ -62,7 +62,8 @@
         "btn_info": "Info",
         "title-edit": "Edit Author",
         "title-info": "Info Author",
-        "btn_save": "Save Changes"
+        "btn_save": "Save Changes",
+        "confirm_delete": "Are you sure you want to delete this author?"
     },
     "mess_author": {
         "create": {
@@ -82,9 +83,6 @@
         "counts": {
             "success": "Author and Book counts loaded successfully.",
             "error": "Failed to load Author and Book counts."
-        },
-        "select": {
-            "error": "Empty data!! "
         },
         "select": {
             "error": "Empty data!! "
@@ -139,5 +137,24 @@
         "btn_save": "Save Changes",
         "no_genre": "No genres for book",
         "no_copies": "There are no copies of this book in the library."
+    },
+    "action": {
+        "create": "Create",
+        "update": "Update",
+        "delete": "Delete",
+        "submit": "Submit"
+    },
+    "option": {
+        "author": "Author",
+        "book": "Book",
+        "genre": "Genre",
+        "book_instance": "Book Instance"
+    },
+    "validation": {
+        "genreError": "Genre name must contain at least 3 characters"
+    },
+    "content": {
+        "delete": "Do you really want to delete this ",
+        "author_no_book": "This author has no books."
     }
 }

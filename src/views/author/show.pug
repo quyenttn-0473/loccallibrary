@@ -2,9 +2,12 @@ extends ../layout
 include ../partials/mixins.pug
 block content
     +PageDetail(t('author-page.author'), author.name)
+    h5 #{author.date_of_birth} - #{author.date_of_death}
     .container
         h5 #{t('sidebar.book')}
         each book in books 
             +linkList(`/book/${book.id}`, book.title, book.summary)
-        
-
+        else 
+            p #{t('content.author_no_book')}
+    hr
+    a(href=`/author/delete/${author.id}`) #{t('action.delete')} #{t('option.author')}

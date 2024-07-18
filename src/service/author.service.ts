@@ -16,8 +16,16 @@ class AuthorService {
             where: {
                 id: id,
             },
-            relations: ['books'],
+            relations: ['book'],
         });
+    }
+    async create(authorData: Partial<Author>) {
+        let author = new Author();
+        Object.assign(author, authorData);
+        await this.authorRepository.save(author);
+    }
+    async delete(id: number) {
+        await this.authorRepository.delete({ id });
     }
 }
 

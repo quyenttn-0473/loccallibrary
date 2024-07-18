@@ -20,7 +20,7 @@ export class Book {
     @Column({ type: 'varchar', nullable: false })
     title: string;
 
-    @Column({ type: 'varchar', nullable: false })
+    @Column({ type: 'varchar', length: 6000, nullable: false })
     summary: string;
 
     @Column({ type: 'varchar', nullable: false })
@@ -35,7 +35,7 @@ export class Book {
     genres: Genre[];
 
     @Column({ type: 'varchar', nullable: false })
-    url: string;
+    url?: string;
 
     @OneToMany(() => BookInstance, (bookInstance) => bookInstance.book)
     bookInstances: BookInstance[];

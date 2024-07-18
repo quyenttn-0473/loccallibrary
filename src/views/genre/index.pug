@@ -11,5 +11,6 @@ block content
             each genre in genres 
                 li.disc
                     +detail(`/genre/${genre.id}`, genre.name)
+        a.btn.btn-success.mb-2(href="/genre/create") #{t('action.create')}
 
 

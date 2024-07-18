@@ -1,0 +1,13 @@
+extends ../layout
+include ../partials/mixins.pug
+
+block content
+    +titlePage(t('action.create'), t('option.genre'))
+    form(method='POST' action='/genre/create')
+        div.form-group
+            label(for='name') #{t('option.genre')}:
+            input#name.form-control(type='text' placeholder='Fantasy, Poetry etc.' name='name' required value=(undefined===genre ? '' : genre.name))
+            p#genre-error.text-danger(style='display: none;') #{t('validation.genreError')}
+        button.btn.btn-success(type='submit') #{t('action.submit')}
+    block script 
+        script(src="/js/genre.js")

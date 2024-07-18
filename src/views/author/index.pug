@@ -20,8 +20,10 @@ block content
       tbody
         each author in authors
           tr
-            td= author.id
-            td= author.first_name
+            td
+              a(href=`/author/${author.id}`)  #{author.id}
+            td
+              a(href=`/author/${author.id}`)  #{author.first_name}
             td= author.family_name
             td= author.date_of_birth
             td= author.date_of_death
@@ -29,36 +31,16 @@ block content
             td#col-url= author.url
             td
               //- Detail button
-              button.btn.btn-info.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#detailAuthorModal" data-id=author.id data-first_name=author.first_name data_family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_info')}
+              button.btn.btn-info.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#detailAuthorModal" data-id=author.id data-first_name=author.first_name data-family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_info')}
               //- Edit button
-              button.btn.btn-warning.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#editAuthorModal" data-id=author.id data-first_name=author.first_name data_family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_edit')}
+              button.btn.btn-warning.btn-sm.mr-2.mb-2(type="button" data-toggle="modal" data-target="#editAuthorModal" data-id=author.id data-first_name=author.first_name data-family_name=author.family_name data-date_of_birth=author.date_of_birth data-date_of_death=author.date_of_death data-name=author.name data-url=author.url) #{t('author-page.btn_edit')}
               //- Delete form
-              form(action=`/author/delete/${author.id}?_method=DELETE` method="POST"  style="display:inline;")
+              form(action=`/author/delete/${author.id}?_method=DELETE` method="POST"  style="display:inline;" onsubmit="return confirmDelete();")
                 input(type="hidden" name="_method" value="DELETE")
                 button.btn.btn-danger.btn-sm(type="submit") #{t('author-page.btn_delete')}
+              //- Hidden element to pass confirmation message to JavaScript
+              div#confirmMessage(data-message=t('author-page.confirm_delete'))
 
-    h2 #{t('author-page.title-create')}
-      //- Form to add a new author
-    form#addAuthorForm(action="/author" method="POST")
-      .form-group
-        label(for="first_name") #{t('author-page.name-col.first-name')}
-        input#firstName.form-control(type="text" name="first_name" required)
-      .form-group
-        label(for="family_name") #{t('author-page.name-col.family-name')}
-        input#familyName.form-control(type="text" name="family_name" required)
-      .form-group
-        label(for="date_of_birth") #{t('author-page.name-col.birth-day')}
-        input#birthDay.form-control(type="date" name="date_of_birth")
-      .form-group
-        label(for="date_of_death") #{t('author-page.name-col.death-day')}
-        input#deathDay.form-control(type="date" name="date_of_death")
-      .form-group
-        label(for="name") #{t('author-page.name-col.name')}
-        input#name.form-control(type="text" name="name")
-      .form-group
-        label(for="url") #{t('author-page.name-col.url')}
-        input#avatar.form-control(type="text" name="url")
-      button.btn.btn-primary(type="submit") #{t('author-page.btn_add')}
 
   include ../partials/AuthorModal
 

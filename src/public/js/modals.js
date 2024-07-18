@@ -10,7 +10,6 @@ $('#editAuthorModal').on('show.bs.modal', function(event) {
     var avatar = button.data('url');
     var action = '/author/update/' + id + '?_method=PUT';
     var modal = $(this);
-    console.log('family name:', familyName);
     modal.find('.modal-body input#editFirstName').val(firstName);
     modal.find('.modal-body input#editFamilyName').val(familyName);
     modal.find('.modal-body input#editBirthDay').val(birthDay);
@@ -76,3 +75,8 @@ $('#editBookModal').on('show.bs.modal', function(event) {
     // Thiết lập action của form
     modal.find('#editBookForm').attr('action', action);
 });
+
+function confirmDelete() {
+    var confirmMessage = document.getElementById('confirmMessage').dataset.message;
+    return confirm(confirmMessage);
+}

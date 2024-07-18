@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import genreService from '../service/genre.service';
 import bookService from '../service/book.service';
-
+import { sendFlashMessage } from '../flashMessageHelper';
+import { plainToInstance } from 'class-transformer';
+import { CreateGenreDto } from '../DTO/genre/createGenre';
 export class GenreController {
     static list = async (req: Request, res: Response) => {
         try {
@@ -16,7 +18,6 @@ export class GenreController {
         const { id } = req.params;
         const genre = await genreService.detail(parseInt(id));
         const books = await bookService.getBooksByGenreId(parseInt(id));
-        console.log('book: ', books);
         res.render('genre/show', {
             genre,
             books,
@@ -24,7 +25,18 @@ export class GenreController {
     };
 
     static create = async (req: Request, res: Response) => {
-        res.send(`NOT IMPLEMENTED: Create Genre`);
+        try {
+            const genreData = req.body;
+            await genreService.create(genreData);
+            sendFlashMessage(req, 'success', 'mess_author.create.success');
+            res.redirect('/genre');
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.create.error');
+            res.redirect('/genre');
+        }
+    };
+    static getPageCreate = async (req: Request, res: Response) => {
+        res.render('genre/create');
     };
 
     static update = async (req: Request, res: Response) => {
