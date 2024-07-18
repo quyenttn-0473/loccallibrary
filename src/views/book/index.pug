@@ -2,7 +2,6 @@ extends ../layout
 
 block content
     .container
-      a.btn.btn-primary(href="/") #{t('book-page.btn_back')}
       h1 #{t('book-page.title-page')}
       hr
       include ../partials/notifications
@@ -20,8 +19,10 @@ block content
         tbody
           each book in books
             tr
-              td= book.id
-              td= book.title
+              td 
+                a(href=`/book/${book.id}`)  #{book.id}
+              td#col-title
+                a(href=`/book/${book.id}`) #{book.title}
               td#col-summary= book.summary
               td= book.isbn
               td#col-url= book.url

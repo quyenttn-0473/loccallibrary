@@ -1,0 +1,8 @@
+mixin PageDetail(title, content)
+    h2 #{title}: #{content}
+
+mixin linkList(url, lable, content)
+    a(href=url) #{lable}
+    p #{content} 
+mixin detail(url, lable)
+    a(href=url) #{lable}  

@@ -11,6 +11,14 @@ class AuthorService {
     async list() {
         return await this.authorRepository.find();
     }
+    async authorById(id: number) {
+        return await this.authorRepository.findOne({
+            where: {
+                id: id,
+            },
+            relations: ['books'],
+        });
+    }
 }
 
 export default new AuthorService();

@@ -2,10 +2,12 @@ extends ../layout
 
 block content
     .container 
-        a.btn.btn-primary(href="/") #{t('book-page.btn_back')}
         h1 #{t('title-page.book_instance')}
         hr
-        include ../partials/notifications
+        if messages && messages.success
+            .alert.alert-success= messages.success
+        if messages && messages.error
+            .alert.alert-danger= messages.error
         h2 #{t('title-list.book_instance')}
         ul
             each bookInstance in bookInstances 

@@ -34,6 +34,7 @@
     },
     "author-page": {
         "btn_back": "Trang chủ",
+        "author": "Tác giả",
         "title-page": "Quản lí Tác giả",
         "title-list": "Danh sách tác giả",
         "name-col": {
@@ -112,11 +113,16 @@
         },
         "title-create": "Thêm Sách",
         "label-form": {
+            "id": "Mã sách",
             "title": "Tiêu đề",
             "summary": "Tóm tắt",
             "isbn": "ISBN",
             "name_author": "Tên Tác giả",
-            "url": "Ảnh đại diện"
+            "url": "Ảnh đại diện",
+            "genre": "Thể loại",
+            "copies": "Bản sao",
+            "imprint": "Ấn bản",
+            "due_back": "Due Back"
         },
         "btn_edit": "Chỉnh sửa",
         "btn_delete": "Xóa",
@@ -124,6 +130,8 @@
         "btn_info": "Thông tin",
         "title-edit": "Chỉnh sửa Sách",
         "title-info": "Thông tin Sách",
-        "btn_save": "Lưu thay đổi"
+        "btn_save": "Lưu thay đổi",
+        "no_genre": "Không có thể loại cho cuốn sách",
+        "no_copies": "Không có bản sao của cuốn sách này trong thư viện."
     }
 }
