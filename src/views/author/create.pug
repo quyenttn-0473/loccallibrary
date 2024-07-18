@@ -1,0 +1,25 @@
+extends ../layout
+
+block content 
+    h2 #{t('author-page.title-create')}
+      //- Form to add a new author
+    form#addAuthorForm(action="/author/create" method="POST")
+      .form-group
+        label(for="first_name") #{t('author-page.name-col.first-name')}
+        input#firstName.form-control(type="text" name="first_name" required)
+      .form-group
+        label(for="family_name") #{t('author-page.name-col.family-name')}
+        input#familyName.form-control(type="text" name="family_name" required)
+      .form-group
+        label(for="date_of_birth") #{t('author-page.name-col.birth-day')}
+        input#birthDay.form-control(type="date" name="date_of_birth")
+      .form-group
+        label(for="date_of_death") #{t('author-page.name-col.death-day')}
+        input#deathDay.form-control(type="date" name="date_of_death")
+      .form-group
+        label(for="name") #{t('author-page.name-col.name')}
+        input#name.form-control(type="text" name="name")
+      .form-group
+        label(for="url") #{t('author-page.name-col.url')}
+        input#avatar.form-control(type="text" name="url")
+      button.btn.btn-primary(type="submit") #{t('author-page.btn_add')}

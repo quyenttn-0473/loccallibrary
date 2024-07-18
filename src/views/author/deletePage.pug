@@ -1,0 +1,9 @@
+extends ../layout
+include ../partials/mixins.pug
+block content
+    +PageDetail(t('author-page.author'), author.name)
+    h6 #{author.date_of_birth} - #{author.date_of_death}
+    p #{t('content.delete')} #{t('option.author')}
+    form(action=`/author/delete/${author.id}?_method=DELETE` method="POST"  style="display:inline;" onsubmit="return confirmDelete();")
+        input(type="hidden" name="_method" value="DELETE")
+        button.btn.btn-primary.btn-sm(type="submit") #{t('action.delete')} 
