@@ -13,10 +13,9 @@ html
           block sidebar
             ul(class='sidebar-nav')
               li
-                a.btn.btn-outline-success.mb-3(href='?lng=en') #{t('sidebar.english')}
+                a.btn.btn-outline-success.mb-3.mr-3(href='?lng=en') #{t('sidebar.english')}
                 a.btn.btn-outline-warning(href='?lng=vi') #{t('sidebar.vietnamese')}
         div(class='col-9')
           a.btn.btn-primary.mb-2(href="/") #{t('author-page.btn_back')}
           block content
           include partials/notifications
-

@@ -1,4 +1,6 @@
 import { AppDataSource } from '../data-source';
+import { Author } from '../entity/Author';
+import { Genre } from '../entity/Genre';
 import { Book } from './../entity/Book';
 
 class BookService {
@@ -33,7 +35,8 @@ class BookService {
                 title: book?.title,
                 summary: book?.summary,
                 isbn: book?.isbn,
-                url: book?.url
+                url: book?.url,
+                id: book?.id,
             }
         };
     }
@@ -51,6 +54,18 @@ class BookService {
         .where('genre.id = :genreId', { genreId }) 
         .getMany();
         return books;
+    }
+    async update(bookData: any, book : Book, author: Author, genres: Genre[]) {
+        const result = {
+            ...book,
+            ...bookData,
+            author,
+            genres
+        }
+        return await this.BookRepository.save(result);
+    }
+    async delete(id: number) {
+        await this.BookRepository.delete(id);
     }
 }
 

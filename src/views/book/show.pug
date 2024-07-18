@@ -30,6 +30,6 @@ block content
                 a(href=val.url) #{val.id}
         else 
             p #{t('book-page.no_copies')}
-
+    a(href=`/book/update/${bookInfo.id}`) #{t('action.update')} 
     
 

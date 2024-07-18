@@ -16,12 +16,8 @@ export class AuthorController {
     static detail = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            const author = await authorService.authorById(parseInt(id));
-            if (!author) {
-                sendFlashMessage(req, 'error', 'mess.select.error');
-                res.redirect('/author');
-            }
             const books = await bookService.getBooksByAuthor(parseInt(id));
+            const author = await authorService.authorById(parseInt(id));
 
             res.render('author/show', {
                 books,
@@ -32,14 +28,14 @@ export class AuthorController {
             res.redirect('/author');
         }
     };
-
-    static addAuthorForm = (req: Request, res: Response) => {
-        res.render('addAuthor');
+    static getCreate = async (req: Request, res: Response) => {
+        res.render('author/create');
     };
-
     static create = async (req: Request, res: Response) => {
         try {
-            res.send(`NOT IMPLEMENTED: Create Author`);
+            await authorService.create(req.body);
+            sendFlashMessage(req, 'success', 'mess_author.create.success');
+            res.redirect('/author');
         } catch (error) {
             sendFlashMessage(req, 'error', 'mess_author.create.error');
             res.redirect('/author');
@@ -56,10 +52,29 @@ export class AuthorController {
         }
     };
 
+    static getDelete = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params;
+            const author = await authorService.authorById(parseInt(id));
+            const books = await bookService.getBooksByAuthor(parseInt(id));
+            if (books.length > 0) {
+                sendFlashMessage(req, 'error', 'mess_author.delete.error');
+                return res.redirect(`../../author/${id}`);
+            }
+            res.render('author/deletePage', {
+                author,
+            });
+        } catch (error) {
+            sendFlashMessage(req, 'error', 'mess_author.delete.error');
+            res.redirect('/author');
+        }
+    };
     static delete = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            res.send(`NOT IMPLEMENTED: Delete Author By ${id}`);
+            await authorService.delete(parseInt(id));
+            sendFlashMessage(req, 'success', 'mess_author.delete.success');
+            res.redirect('/author'); // or any other response
         } catch (error) {
             sendFlashMessage(req, 'error', 'mess_author.delete.error');
             res.redirect('/author');

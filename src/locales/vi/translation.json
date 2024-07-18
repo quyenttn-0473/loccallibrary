@@ -62,7 +62,8 @@
         "btn_info": "Thông tin tác giả",
         "title-edit": "Chỉnh sửa thông tin",
         "title-info": "Thông tin tác giả",
-        "btn_save": "Lưu"
+        "btn_save": "Lưu",
+        "confirm_delete": "Bạn có chắc chắn muốn xóa tác giả này không?"
     },
     "mess_author": {
         "create": {
@@ -133,5 +134,24 @@
         "btn_save": "Lưu thay đổi",
         "no_genre": "Không có thể loại cho cuốn sách",
         "no_copies": "Không có bản sao của cuốn sách này trong thư viện."
+    },
+    "action": {
+        "create": "Thêm",
+        "update": "Chỉnh sửa",
+        "delete": "Xóa",
+        "submit": "Gửi"
+    },
+    "option": {
+        "author": "Tác giả",
+        "book": "Sách",
+        "genre": "Thể loại",
+        "book_instance": "Bản sao sách"
+    },
+    "validation": {
+        "genreError": "Tên thể loại phải chứa ít nhất 3 ký tự"
+    },
+    "content": {
+        "delete": "Bạn có thực sự muốn xóa ",
+        "author_no_book": "Tác giả này không có sách"
     }
 }
